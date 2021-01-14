@@ -18,24 +18,24 @@ class _SetupScreenState extends State<SetupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-//        actions: <Widget>[
-//          FlatButton(
-//            onPressed: () {
-//              Navigator.push(
-//                context,
-//                MaterialPageRoute(
-//                  builder: (context) {
-//                    return SettingsScreen();
-//                  },
-//                ),
-//              );
-//            },
-//            child: Icon(
-//              Icons.settings,
-//            ),
-//          ),
-//        ],
+        actions: <Widget>[
+          FlatButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return SettingsScreen();
+                  },
+                ),
+              );
+            },
+            child: Icon(
+              Icons.settings,
+            ),
           ),
+        ],
+      ),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -19,3 +19,17 @@ Future<void> getValues() async {
   addData('Sets', prefs.getInt('Sets') ?? 0);
   addData('Reps', prefs.getInt('Reps') ?? 0);
 }
+
+void muteValueUpdated(value) async {
+  final prefs = await SharedPreferences.getInstance();
+
+  prefs.setBool('mute', value);
+}
+
+Future<void> getMuteValue() async {
+  final prefs = await SharedPreferences.getInstance();
+
+  // Try reading data from the Activity, Rest, Sets and Reps keys. If it
+  // doesn't exist, return 0.
+  addMuteData(prefs.getBool('mute') ?? false);
+}

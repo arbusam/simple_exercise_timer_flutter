@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:audioplayers/audio_cache.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rate_my_app/rate_my_app.dart';
 import 'package:simple_exercise_timer/models/constants.dart';
 import 'dart:io';
 import 'package:simple_exercise_timer/models/variables.dart';
@@ -37,7 +39,9 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
 
   void startTimer() {
     stop = false;
-    player.play('sound1.mp3');
+    if (!getMuteData()) {
+      player.play('sound1.mp3');
+    }
     activateTimer();
   }
 
@@ -69,14 +73,16 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         labelNumber = currentNumber.toString();
         progressNumber += 1 / 3;
       });
-      if (currentNumber == 2) {
+      if (currentNumber == 2 && !getMuteData()) {
         player.play('sound1.mp3');
-      } else if (currentNumber == 1) {
+      } else if (currentNumber == 1 && !getMuteData()) {
         player.play('sound1.mp3');
       }
       if (currentNumber == 0) {
-        player.play('sound2.mp3');
-        message = 'Go!';
+        if (!getMuteData()) {
+          player.play('sound2.mp3');
+        }
+        message = 'Activity';
         labelNumber = 'Go!';
       }
       if (currentNumber == -1) {
@@ -97,15 +103,17 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         labelNumber = currentNumber.toString();
         progressNumber += 1 / activity;
       });
-      if (currentNumber == 3) {
+      if (currentNumber == 3 && !getMuteData()) {
         player.play('sound1.mp3');
-      } else if (currentNumber == 2) {
+      } else if (currentNumber == 2 && !getMuteData()) {
         player.play('sound1.mp3');
-      } else if (currentNumber == 1) {
+      } else if (currentNumber == 1 && !getMuteData()) {
         player.play('sound1.mp3');
       }
       if (currentNumber == 0) {
-        player.play('sound2.mp3');
+        if (!getMuteData()) {
+          player.play('sound2.mp3');
+        }
         setState(() {
           currentColour = redColor;
           darkCurrentColour = darkRedColour;
@@ -145,6 +153,59 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
               labelNumber = 'Done!';
               progressNumber = 1;
               message = 'Done!';
+
+              // if (_rateMyApp.shouldOpenDialog) {
+              _rateMyApp.showStarRateDialog(context,
+                  title: 'Enjoying '
+                      'Simple Exercise Timer?',
+                  dialogStyle: DialogStyle(
+                    titleAlign: TextAlign.center,
+                    messageAlign: TextAlign.center,
+                    messagePadding: EdgeInsets.only(bottom: 20.0),
+                  ), actionsBuilder: (context, stars) {
+                return [
+                  TextButton(
+                    child: Text("Ok"),
+                    onPressed: () {
+                      if (stars != null) {
+                        _rateMyApp
+                            .save()
+                            .then((value) => Navigator.pop(context));
+
+                        if (stars <= 3) {
+                          AlertDialog alertDialog = Platform.isIOS
+                              ? CupertinoAlertDialog(
+                                  title: Text("Send Feedback?"),
+                                  content: Text(
+                                      "Do you want to send some feedback about my app?"),
+                                  actions: <Widget>[
+                                    TextButton(child: Text("Yes")),
+                                    TextButton(child: Text("No")),
+                                  ],
+                                )
+                              : AlertDialog(
+                                  title: Text("Send Feedback?"),
+                                  content: Text(
+                                      "Do you want to send some feedback about my app?"),
+                                  actions: <Widget>[
+                                    TextButton(child: Text("Yes")),
+                                    TextButton(child: Text("No")),
+                                  ],
+                                );
+                          showDialog(
+                            context: context,
+                            builder: (_) {
+                              return alertDialog;
+                            },
+                          );
+                        }
+                      } else {
+                        Navigator.pop(context);
+                      }
+                    },
+                  ),
+                ];
+              });
             });
           }
         }
@@ -159,15 +220,17 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         labelNumber = currentNumber.toString();
         progressNumber += 1 / rest;
       });
-      if (currentNumber == 3) {
+      if (currentNumber == 3 && !getMuteData()) {
         player.play('sound1.mp3');
-      } else if (currentNumber == 2) {
+      } else if (currentNumber == 2 && !getMuteData()) {
         player.play('sound1.mp3');
-      } else if (currentNumber == 1) {
+      } else if (currentNumber == 1 && !getMuteData()) {
         player.play('sound1.mp3');
       }
       if (currentNumber == 0) {
-        player.play('sound2.mp3');
+        if (!getMuteData()) {
+          player.play('sound2.mp3');
+        }
         setState(() {
           currentColour = greenColor;
           darkCurrentColour = darkGreenColour;
@@ -200,12 +263,20 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
     });
   }
 
+  RateMyApp _rateMyApp = RateMyApp(
+    preferencesPrefix: 'rateMyApp_',
+    minDays: 3,
+    minLaunches: 5,
+    remindDays: 5,
+    remindLaunches: 5,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(message),
-        leading: FlatButton(
+        leading: TextButton(
           child: Icon(
             Platform.isIOS ? Icons.arrow_back_ios : Icons.arrow_back,
             color: Colors.white,
@@ -271,15 +342,17 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   SizedBox(
                     height: 50.0,
                   ),
-                  FlatButton(
+                  TextButton(
                     onPressed: () {
                       resetButton();
                       if (stop == true) {
                         stop = false;
-                        if (message == 'Go!') {
+                        if (message == 'Activity') {
                           activateActivityTimer();
                         } else if (message == 'Rest') {
                           activateRestTimer();
+                        } else if (message == 'Wait') {
+                          activateTimer();
                         }
                       } else {
                         stop = true;

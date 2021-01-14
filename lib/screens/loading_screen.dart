@@ -7,6 +7,7 @@ import 'setup_screen.dart';
 class LoadingScreen extends StatelessWidget {
   void load(var context) async {
     await getValues();
+    await getMuteValue();
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'add_account_screen.dart';
+import 'package:simple_exercise_timer/switch.dart';
 
 class SettingsScreen extends StatelessWidget {
   @override
@@ -10,20 +11,7 @@ class SettingsScreen extends StatelessWidget {
         color: Theme.of(context).backgroundColor,
         child: ListView(
           children: <Widget>[
-            ListTile(
-              title: Text('Add Accounts'),
-              trailing: Icon(Icons.arrow_right),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return AddAccountsScreen();
-                    },
-                  ),
-                );
-              },
-            ),
+            ListTile(title: Text('Mute'), trailing: (SettingsSwitch())),
           ],
         ),
       ),
