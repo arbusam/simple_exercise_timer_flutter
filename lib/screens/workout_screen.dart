@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:audioplayers/audio_cache.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rate_my_app/rate_my_app.dart';
@@ -18,7 +18,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   final int sets = getData()['Sets'] + 1;
   final int reps = getData()['Reps'] + 1;
 
-  final player = AudioCache();
+  final player = AssetsAudioPlayer();
 
   bool paused = false;
 
@@ -40,7 +40,8 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   void startTimer() {
     stop = false;
     if (!getMuteData()) {
-      player.play('sound1.mp3');
+      player.open(Audio('assets/sound1.mp3'));
+      player.play();
     }
     activateTimer();
   }
@@ -74,13 +75,16 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         progressNumber += 1 / 3;
       });
       if (currentNumber == 2 && !getMuteData()) {
-        player.play('sound1.mp3');
+        player.open(Audio('assets/sound1.mp3'));
+        player.play();
       } else if (currentNumber == 1 && !getMuteData()) {
-        player.play('sound1.mp3');
+        player.open(Audio('assets/sound1.mp3'));
+        player.play();
       }
       if (currentNumber == 0) {
         if (!getMuteData()) {
-          player.play('sound2.mp3');
+          player.open(Audio('assets/sound2.mp3'));
+          player.play();
         }
         message = 'Activity';
         labelNumber = 'Go!';
@@ -104,15 +108,19 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         progressNumber += 1 / activity;
       });
       if (currentNumber == 3 && !getMuteData()) {
-        player.play('sound1.mp3');
+        player.open(Audio('assets/sound1.mp3'));
+        player.play();
       } else if (currentNumber == 2 && !getMuteData()) {
-        player.play('sound1.mp3');
+        player.open(Audio('assets/sound1.mp3'));
+        player.play();
       } else if (currentNumber == 1 && !getMuteData()) {
-        player.play('sound1.mp3');
+        player.open(Audio('assets/sound1.mp3'));
+        player.play();
       }
       if (currentNumber == 0) {
         if (!getMuteData()) {
-          player.play('sound2.mp3');
+          player.open(Audio('assets/sound2.mp3'));
+          player.play();
         }
         setState(() {
           currentColour = redColor;
@@ -167,38 +175,39 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   TextButton(
                     child: Text("Ok"),
                     onPressed: () {
+                      Navigator.pop(context);
                       if (stars != null) {
                         _rateMyApp
                             .save()
                             .then((value) => Navigator.pop(context));
 
-                        if (stars <= 3) {
-                          AlertDialog alertDialog = Platform.isIOS
-                              ? CupertinoAlertDialog(
-                                  title: Text("Send Feedback?"),
-                                  content: Text(
-                                      "Do you want to send some feedback about my app?"),
-                                  actions: <Widget>[
-                                    TextButton(child: Text("Yes")),
-                                    TextButton(child: Text("No")),
-                                  ],
-                                )
-                              : AlertDialog(
-                                  title: Text("Send Feedback?"),
-                                  content: Text(
-                                      "Do you want to send some feedback about my app?"),
-                                  actions: <Widget>[
-                                    TextButton(child: Text("Yes")),
-                                    TextButton(child: Text("No")),
-                                  ],
-                                );
-                          showDialog(
-                            context: context,
-                            builder: (_) {
-                              return alertDialog;
-                            },
-                          );
-                        }
+                        // if (stars <= 3) {
+                        //   AlertDialog alertDialog = Platform.isIOS
+                        //       ? CupertinoAlertDialog(
+                        //           title: Text("Send Feedback?"),
+                        //           content: Text(
+                        //               "Do you want to send some feedback about my app?"),
+                        //           actions: <Widget>[
+                        //             TextButton(child: Text("Yes")),
+                        //             TextButton(child: Text("No")),
+                        //           ],
+                        //         )
+                        //       : AlertDialog(
+                        //           title: Text("Send Feedback?"),
+                        //           content: Text(
+                        //               "Do you want to send some feedback about my app?"),
+                        //           actions: <Widget>[
+                        //             TextButton(child: Text("Yes")),
+                        //             TextButton(child: Text("No")),
+                        //           ],
+                        //         );
+                        //   showDialog(
+                        //     context: context,
+                        //     builder: (_) {
+                        //       return alertDialog;
+                        //     },
+                        //   );
+                        // }
                       } else {
                         Navigator.pop(context);
                       }
@@ -206,6 +215,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   ),
                 ];
               });
+              // }
             });
           }
         }
@@ -221,15 +231,19 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         progressNumber += 1 / rest;
       });
       if (currentNumber == 3 && !getMuteData()) {
-        player.play('sound1.mp3');
+        player.open(Audio('assets/sound1.mp3'));
+        player.play();
       } else if (currentNumber == 2 && !getMuteData()) {
-        player.play('sound1.mp3');
+        player.open(Audio('assets/sound1.mp3'));
+        player.play();
       } else if (currentNumber == 1 && !getMuteData()) {
-        player.play('sound1.mp3');
+        player.open(Audio('assets/sound1.mp3'));
+        player.play();
       }
       if (currentNumber == 0) {
         if (!getMuteData()) {
-          player.play('sound2.mp3');
+          player.open(Audio('assets/sound2.mp3'));
+          player.play();
         }
         setState(() {
           currentColour = greenColor;
@@ -265,8 +279,8 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
 
   RateMyApp _rateMyApp = RateMyApp(
     preferencesPrefix: 'rateMyApp_',
-    minDays: 3,
-    minLaunches: 5,
+    minDays: 5,
+    minLaunches: 3,
     remindDays: 5,
     remindLaunches: 5,
   );

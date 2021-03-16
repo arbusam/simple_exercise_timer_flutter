@@ -1,7 +1,13 @@
 PODS:
-  - audioplayers (0.0.1):
+  - assets_audio_player (0.0.1):
+    - Flutter
+  - assets_audio_player_web (0.0.1):
     - Flutter
   - Flutter (1.0.0)
+  - health_kit_reporter (1.0.2):
+    - Flutter
+    - HealthKitReporter
+  - HealthKitReporter (1.3.1)
   - path_provider (0.0.1):
     - Flutter
   - rate_my_app (0.7.1):
@@ -10,17 +16,27 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
+  - assets_audio_player (from `.symlinks/plugins/assets_audio_player/ios`)
+  - assets_audio_player_web (from `.symlinks/plugins/assets_audio_player_web/ios`)
   - Flutter (from `Flutter`)
+  - health_kit_reporter (from `.symlinks/plugins/health_kit_reporter/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - rate_my_app (from `.symlinks/plugins/rate_my_app/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
 
+SPEC REPOS:
+  trunk:
+    - HealthKitReporter
+
 EXTERNAL SOURCES:
-  audioplayers:
-    :path: ".symlinks/plugins/audioplayers/ios"
+  assets_audio_player:
+    :path: ".symlinks/plugins/assets_audio_player/ios"
+  assets_audio_player_web:
+    :path: ".symlinks/plugins/assets_audio_player_web/ios"
   Flutter:
     :path: Flutter
+  health_kit_reporter:
+    :path: ".symlinks/plugins/health_kit_reporter/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
   rate_my_app:
@@ -29,12 +45,15 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/shared_preferences/ios"
 
 SPEC CHECKSUMS:
-  audioplayers: 84f968cea3f2deab00ec4f8ff53358b3c0b3992c
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  assets_audio_player: edee322b9cb625571b830b35872ead1a295fd917
+  assets_audio_player_web: 19826380c44375761aa0b9053665c1e3fbc3b86b
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  health_kit_reporter: 2a8de89d3ee271a258bfd388c1c4bf281a76e60b
+  HealthKitReporter: 212880f16496caf5210a73c66492b45f7f6516ca
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   rate_my_app: 3b64dd0876bd286001595ee2e69193e757c4d77c
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
 
-PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+PODFILE CHECKSUM: 775997f741c536251164e3eacf6e34abf2eb7a17
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.8.0
