@@ -77,7 +77,8 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
       if (currentNumber == 2 && !getMuteData()) {
         player.open(Audio('assets/sound1.mp3'));
         player.play();
-      } else if (currentNumber == 1 && !getMuteData()) {
+      }
+      if (currentNumber == 1 && !getMuteData()) {
         player.open(Audio('assets/sound1.mp3'));
         player.play();
       }
