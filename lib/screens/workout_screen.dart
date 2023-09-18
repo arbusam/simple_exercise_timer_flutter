@@ -18,7 +18,8 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   final int sets = (getData()['Sets'] ?? 0) + 1;
   final int reps = (getData()['Reps'] ?? 0) + 1;
 
-  final player = AssetsAudioPlayer();
+  final player1 = AssetsAudioPlayer();
+  final player2 = AssetsAudioPlayer();
 
   bool paused = false;
 
@@ -40,8 +41,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   void startTimer() {
     stop = false;
     if (!getMuteData()) {
-      player.open(Audio('assets/sound1.mp3'));
-      player.play();
+      player1.open(Audio('assets/sound1.mp3'));
     }
     activateTimer();
   }
@@ -75,17 +75,14 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         progressNumber += 1 / 3;
       });
       if (currentNumber == 2 && !getMuteData()) {
-        player.open(Audio('assets/sound1.mp3'));
-        player.play();
+        player1.open(Audio('assets/sound1.mp3'));
       }
       if (currentNumber == 1 && !getMuteData()) {
-        player.open(Audio('assets/sound1.mp3'));
-        player.play();
+        player1.open(Audio('assets/sound1.mp3'));
       }
       if (currentNumber == 0) {
         if (!getMuteData()) {
-          player.open(Audio('assets/sound2.mp3'));
-          player.play();
+          player1.open(Audio('assets/sound2.mp3'));
         }
         message = 'Activity';
         labelNumber = 'Go!';
@@ -109,19 +106,15 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         progressNumber += 1 / activity;
       });
       if (currentNumber == 3 && !getMuteData()) {
-        player.open(Audio('assets/sound1.mp3'));
-        player.play();
+        player1.open(Audio('assets/sound1.mp3'));
       } else if (currentNumber == 2 && !getMuteData()) {
-        player.open(Audio('assets/sound1.mp3'));
-        player.play();
+        player1.open(Audio('assets/sound1.mp3'));
       } else if (currentNumber == 1 && !getMuteData()) {
-        player.open(Audio('assets/sound1.mp3'));
-        player.play();
+        player1.open(Audio('assets/sound1.mp3'));
       }
       if (currentNumber == 0) {
         if (!getMuteData()) {
-          player.open(Audio('assets/sound2.mp3'));
-          player.play();
+          player1.open(Audio('assets/sound2.mp3'));
         }
         setState(() {
           currentColour = redColor;
@@ -232,19 +225,15 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         progressNumber += 1 / rest;
       });
       if (currentNumber == 3 && !getMuteData()) {
-        player.open(Audio('assets/sound1.mp3'));
-        player.play();
+        player1.open(Audio('assets/sound1.mp3'));
       } else if (currentNumber == 2 && !getMuteData()) {
-        player.open(Audio('assets/sound1.mp3'));
-        player.play();
+        player1.open(Audio('assets/sound1.mp3'));
       } else if (currentNumber == 1 && !getMuteData()) {
-        player.open(Audio('assets/sound1.mp3'));
-        player.play();
+        player1.open(Audio('assets/sound1.mp3'));
       }
       if (currentNumber == 0) {
         if (!getMuteData()) {
-          player.open(Audio('assets/sound2.mp3'));
-          player.play();
+          player1.open(Audio('assets/sound2.mp3'));
         }
         setState(() {
           currentColour = greenColor;
@@ -269,7 +258,15 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   @override
   void initState() {
     super.initState();
+    // player1.open(Audio('assets/sound1.mp3')), volume: 0);
+    // player2.open(Audio('assets/sound2.mp3')), volume: 0);
     startTimer();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    stop = true;
   }
 
   void resetButton() {

@@ -79,7 +79,7 @@ class _SetupScreenState extends State<SetupScreen> {
                         );
                       },
                       child: Text(
-                        "Let's Start",
+                        "Let's Start!",
                         style: TextStyle(
                           color: Color(0xFF212121),
                         ),

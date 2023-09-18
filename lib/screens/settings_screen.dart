@@ -9,21 +9,11 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Container(
-        color: Theme.of(context).backgroundColor,
+        color: Theme.of(context).colorScheme.background,
         child: ListView(
-          children: Platform.isIOS
-              ? <Widget>[
-                  ListTile(title: Text('Mute'), trailing: (SettingsSwitch())),
-                ]
-              : <Widget>[
-                  ListTile(title: Text('Mute'), trailing: (SettingsSwitch())),
-                  ListTile(
-                    title: Text('Health'),
-                    leading: Image(
-                      image: AssetImage('assets/Icon - Apple Health.png'),
-                    ),
-                  )
-                ],
+          children: <Widget>[
+            ListTile(title: Text('Mute'), trailing: (SettingsSwitch())),
+          ],
         ),
       ),
     );
