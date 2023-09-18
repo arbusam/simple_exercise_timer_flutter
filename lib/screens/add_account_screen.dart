@@ -14,7 +14,7 @@ class _AddAccountsScreenState extends State<AddAccountsScreen> {
       body: ListView(
         children: <Widget>[
           ListTile(
-            leading: FlatButton(
+            leading: TextButton(
               onPressed: () {
                 //final strava = Strava(true, secret);
               },

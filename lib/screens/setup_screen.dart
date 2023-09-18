@@ -19,7 +19,7 @@ class _SetupScreenState extends State<SetupScreen> {
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             onPressed: () {
               Navigator.push(
                 context,
@@ -62,8 +62,12 @@ class _SetupScreenState extends State<SetupScreen> {
                   Container(
                     height: 110.0,
                     width: 120.0,
-                    child: RaisedButton(
-                      color: Color(0xFFFF5252),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          Color(0xFFFF5252),
+                        ),
+                      ),
                       onPressed: () {
                         Navigator.push(
                           context,

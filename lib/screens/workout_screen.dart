@@ -13,10 +13,10 @@ class WorkoutScreen extends StatefulWidget {
 }
 
 class _WorkoutScreenState extends State<WorkoutScreen> {
-  final int activity = getData()['Activity'] + 1;
-  final int rest = getData()['Rest'] + 1;
-  final int sets = getData()['Sets'] + 1;
-  final int reps = getData()['Reps'] + 1;
+  final int activity = (getData()['Activity'] ?? 0) + 1;
+  final int rest = (getData()['Rest'] ?? 0) + 1;
+  final int sets = (getData()['Sets'] ?? 0) + 1;
+  final int reps = (getData()['Reps'] ?? 0) + 1;
 
   final player = AssetsAudioPlayer();
 

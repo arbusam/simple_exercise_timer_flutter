@@ -5,7 +5,7 @@ import 'dart:io' show Platform;
 import 'models/methods.dart';
 
 class SetupPicker extends StatefulWidget {
-  SetupPicker({this.title});
+  SetupPicker({required this.title});
 
   final String title;
 
@@ -17,7 +17,7 @@ class _SetupPickerState extends State<SetupPicker> {
   CupertinoPicker iOSPicker(String title) {
     return CupertinoPicker(
       scrollController: new FixedExtentScrollController(
-        initialItem: getData()[title],
+        initialItem: getData()[title]!,
       ),
       itemExtent: 32.0,
       //backgroundColor: Colors.white,
@@ -33,8 +33,8 @@ class _SetupPickerState extends State<SetupPicker> {
               '${index + 1}',
               style: Theme.of(context)
                   .textTheme
-                  .bodyText1
-                  .copyWith(fontSize: 20.0),
+                  .bodyLarge
+                  ?.copyWith(fontSize: 20.0),
             ),
           );
         },
@@ -53,8 +53,8 @@ class _SetupPickerState extends State<SetupPicker> {
               '${index + 1}',
               style: Theme.of(context)
                   .textTheme
-                  .bodyText1
-                  .copyWith(fontSize: 20.0),
+                  .bodyLarge
+                  ?.copyWith(fontSize: 20.0),
             ),
             value: index,
           );

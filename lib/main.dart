@@ -9,19 +9,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.light().copyWith(
-        primaryColor: Color(0xFF03A9F4),
-        accentColor: Color(0xFFFF5252),
-        backgroundColor: Colors.white,
-      ),
+          colorScheme: ThemeData.light().colorScheme.copyWith(
+                primary: Color(0xFF03A9F4),
+                secondary: Color(0xFFFF5252),
+                background: Colors.white,
+              )),
       darkTheme: ThemeData.dark().copyWith(
         primaryTextTheme: TextTheme(
-          bodyText1: TextStyle(
+          bodyLarge: TextStyle(
             color: Color(0xFF212121),
           ),
         ),
-        backgroundColor: Colors.black,
+        colorScheme: ThemeData.dark().colorScheme.copyWith(
+              background: Colors.black,
+            ),
         textTheme: TextTheme(
-          bodyText1: TextStyle(color: Colors.white),
+          bodyLarge: TextStyle(color: Colors.white),
         ),
       ),
       home: (LoadingScreen()),
