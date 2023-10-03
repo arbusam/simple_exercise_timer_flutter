@@ -26,9 +26,10 @@ dependencies:
   cupertino_icons: ^1.0.6
   shared_preferences: ^2.2.1
   assets_audio_player: ^3.1.1
-  rate_my_app: ^2.0.0
+  # rate_my_app: ^2.0.0
   # health_kit_reporter: ^2.1.1
   file: ^6.1.4
+  sqflite: ^2.3.0
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +65,9 @@ flutter:
     - family: NotoSans-Bold
       fonts:
         - asset: fonts/NotoSans-Bold.ttf
+    - family: Roboto-Medium
+      fonts:
+        - asset: fonts/Roboto-Medium.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

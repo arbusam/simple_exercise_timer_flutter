@@ -4,12 +4,12 @@ import 'package:simple_exercise_timer/models/methods.dart';
 import 'package:simple_exercise_timer/models/variables.dart';
 import 'dart:io' show Platform;
 
-class SettingsSwitch extends StatefulWidget {
+class MuteSwitch extends StatefulWidget {
   @override
-  _SettingsSwitchState createState() => _SettingsSwitchState();
+  _MuteSwitchState createState() => _MuteSwitchState();
 }
 
-class _SettingsSwitchState extends State<SettingsSwitch> {
+class _MuteSwitchState extends State<MuteSwitch> {
   CupertinoSwitch iOSSwitch() {
     return CupertinoSwitch(
       value: getMuteData(),

@@ -5,9 +5,10 @@ import 'dart:io' show Platform;
 import 'models/methods.dart';
 
 class SetupPicker extends StatefulWidget {
-  SetupPicker({required this.title});
+  SetupPicker({required this.title, required this.onChanged});
 
   final String title;
+  final Function(int) onChanged;
 
   @override
   _SetupPickerState createState() => _SetupPickerState();
@@ -24,6 +25,7 @@ class _SetupPickerState extends State<SetupPicker> {
       onSelectedItemChanged: (int index) {
         addData(title, index);
         valueUpdated(title, index);
+        widget.onChanged(index + 1);
       },
       children: new List<Widget>.generate(
         60,
@@ -66,6 +68,7 @@ class _SetupPickerState extends State<SetupPicker> {
         setState(() {
           getData()[title] = index;
         });
+        widget.onChanged(index + 1);
       },
     );
   }

@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rate_my_app/rate_my_app.dart';
 import 'package:simple_exercise_timer/models/constants.dart';
 import 'dart:io';
 import 'package:simple_exercise_timer/models/variables.dart';
@@ -155,61 +154,6 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
               labelNumber = 'Done!';
               progressNumber = 1;
               message = 'Done!';
-
-              // if (_rateMyApp.shouldOpenDialog) {
-              _rateMyApp.showStarRateDialog(context,
-                  title: 'Enjoying '
-                      'Simple Exercise Timer?',
-                  dialogStyle: DialogStyle(
-                    titleAlign: TextAlign.center,
-                    messageAlign: TextAlign.center,
-                    messagePadding: EdgeInsets.only(bottom: 20.0),
-                  ), actionsBuilder: (context, stars) {
-                return [
-                  TextButton(
-                    child: Text("Ok"),
-                    onPressed: () {
-                      Navigator.pop(context);
-                      if (stars != null) {
-                        _rateMyApp
-                            .save()
-                            .then((value) => Navigator.pop(context));
-
-                        // if (stars <= 3) {
-                        //   AlertDialog alertDialog = Platform.isIOS
-                        //       ? CupertinoAlertDialog(
-                        //           title: Text("Send Feedback?"),
-                        //           content: Text(
-                        //               "Do you want to send some feedback about my app?"),
-                        //           actions: <Widget>[
-                        //             TextButton(child: Text("Yes")),
-                        //             TextButton(child: Text("No")),
-                        //           ],
-                        //         )
-                        //       : AlertDialog(
-                        //           title: Text("Send Feedback?"),
-                        //           content: Text(
-                        //               "Do you want to send some feedback about my app?"),
-                        //           actions: <Widget>[
-                        //             TextButton(child: Text("Yes")),
-                        //             TextButton(child: Text("No")),
-                        //           ],
-                        //         );
-                        //   showDialog(
-                        //     context: context,
-                        //     builder: (_) {
-                        //       return alertDialog;
-                        //     },
-                        //   );
-                        // }
-                      } else {
-                        Navigator.pop(context);
-                      }
-                    },
-                  ),
-                ];
-              });
-              // }
             });
           }
         }
@@ -274,14 +218,6 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
       paused = !paused;
     });
   }
-
-  RateMyApp _rateMyApp = RateMyApp(
-    preferencesPrefix: 'rateMyApp_',
-    minDays: 5,
-    minLaunches: 3,
-    remindDays: 5,
-    remindLaunches: 5,
-  );
 
   @override
   Widget build(BuildContext context) {

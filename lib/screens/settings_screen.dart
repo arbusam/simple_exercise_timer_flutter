@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'add_account_screen.dart';
-import 'package:simple_exercise_timer/switch.dart';
-import 'dart:io' show Platform;
+import 'package:simple_exercise_timer/mute_switch.dart';
 
 class SettingsScreen extends StatelessWidget {
   @override
@@ -12,7 +10,7 @@ class SettingsScreen extends StatelessWidget {
         color: Theme.of(context).colorScheme.background,
         child: ListView(
           children: <Widget>[
-            ListTile(title: Text('Mute'), trailing: (SettingsSwitch())),
+            ListTile(title: Text('Mute'), trailing: (MuteSwitch())),
           ],
         ),
       ),
