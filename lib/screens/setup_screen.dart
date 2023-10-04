@@ -85,7 +85,7 @@ class _SetupScreenState extends State<SetupScreen> {
     final totalWorkoutLengthMinutes = totalWorkoutLength ~/ 60;
     final totalWorkoutLengthRemainingSeconds = totalWorkoutLength % 60;
     final totalWorkoutLengthString =
-        "${totalWorkoutLengthMinutes.toString().padLeft(2, '0')}:${totalWorkoutLengthRemainingSeconds.toString().padLeft(2, '0')}";
+        "${totalWorkoutLengthMinutes.toString().padLeft(2, '0')}m:${totalWorkoutLengthRemainingSeconds.toString().padLeft(2, '0')}s";
 
     return Card(
       child: SizedBox(
@@ -232,28 +232,36 @@ class _SetupScreenState extends State<SetupScreen> {
               ),
             ),
             buildGraph(),
-            SizedBox(
-              height: 50,
-              width: MediaQuery.of(context).size.width * 0.9,
-              child: FilledButton(
-                style: FilledButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.secondary,
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        addToHistory();
-                        return WorkoutScreen();
-                      },
+            Container(
+              margin: EdgeInsets.only(bottom: 20),
+              child: SizedBox(
+                height: 50,
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: Container(
+                  child: FilledButton(
+                    style: FilledButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
                     ),
-                  );
-                },
-                child: Text(
-                  "Let's Start!",
-                  style: TextStyle(
-                    color: Theme.of(context).primaryTextTheme.labelLarge!.color,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            addToHistory();
+                            return WorkoutScreen();
+                          },
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "Let's Start!",
+                      style: TextStyle(
+                        color: Theme.of(context)
+                            .primaryTextTheme
+                            .labelLarge!
+                            .color,
+                      ),
+                    ),
                   ),
                 ),
               ),

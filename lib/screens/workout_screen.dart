@@ -227,7 +227,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         leading: TextButton(
           child: Icon(
             Platform.isIOS ? Icons.arrow_back_ios : Icons.arrow_back,
-            color: Colors.white,
+            color: Theme.of(context).iconTheme.color,
           ),
           onPressed: () {
             stop = true;

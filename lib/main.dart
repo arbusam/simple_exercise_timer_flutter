@@ -9,17 +9,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.light().copyWith(
-          useMaterial3: true,
-          primaryTextTheme: TextTheme(
-            bodyLarge: TextStyle(
-              color: Color(0xFF212121),
-            ),
+        useMaterial3: true,
+        primaryTextTheme: TextTheme(
+          bodyLarge: TextStyle(
+            color: Color(0xFF212121),
           ),
-          colorScheme: ThemeData.light().colorScheme.copyWith(
-                primary: Color(0xFF03A9F4),
-                secondary: Color(0xFFFF5252),
-                background: Colors.white,
-              )),
+        ),
+        colorScheme: ThemeData.light().colorScheme.copyWith(
+              primary: Color(0xFF03A9F4),
+              secondary: Color(0xFFFF5252),
+              background: Colors.white,
+            ),
+        iconTheme: IconThemeData(
+          color: Color(0xFF212121),
+        ),
+      ),
       darkTheme: ThemeData.dark().copyWith(
         useMaterial3: true,
         primaryTextTheme: TextTheme(
