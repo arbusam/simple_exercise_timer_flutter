@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_exercise_timer/models/constants.dart';
+import 'package:simple_exercise_timer/models/methods.dart';
+import 'package:simple_exercise_timer/models/variables.dart';
+import 'package:simple_exercise_timer/screens/workout_screen.dart';
 import 'dart:io' show Platform;
 import 'package:sqflite/sqflite.dart';
 
@@ -229,14 +232,17 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                   CupertinoDialogAction(
                                     child: Text('Yes'),
                                     isDefaultAction: true,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                      redoWorkout(context, data, index);
+                                    },
                                   ),
                                 ],
                               )
                             : AlertDialog(
                                 title: Text('Redo Workout'),
                                 content: Text(
-                                    'Do you wish to redo this workout? Activity: 0, Rest: 0, Sets: 0, Reps: 0'),
+                                    'Do you wish to redo this workout? Activity: ${data[index]["activity"]}, Rest: ${data[index]["rest"]}, Sets: ${data[index]["sets"]}, Reps: ${data[index]["reps"]}'),
                                 actions: [
                                   TextButton(
                                     onPressed: () {
@@ -245,7 +251,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                     child: Text("No"),
                                   ),
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                      redoWorkout(context, data, index);
+                                    },
                                     child: Text("Yes"),
                                   )
                                 ],
@@ -279,6 +288,22 @@ class _HistoryScreenState extends State<HistoryScreen> {
         }
       },
     );
+  }
+
+  void redoWorkout(
+      BuildContext context, List<Map<String, int>> data, int index) {
+    addData('Activity', data[index]['activity']! - 1);
+    valueUpdated('Activity', data[index]['activity']! - 1);
+    addData('Rest', data[index]['rest']! - 1);
+    valueUpdated('Rest', data[index]['rest']! - 1);
+    addData('Sets', data[index]['sets']! - 1);
+    valueUpdated('Sets', data[index]['sets']! - 1);
+    addData('Reps', data[index]['reps']! - 1);
+    valueUpdated('Reps', data[index]['reps']! - 1);
+
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return WorkoutScreen();
+    }));
   }
 }
 
