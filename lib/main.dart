@@ -23,6 +23,44 @@ class MyApp extends StatelessWidget {
         iconTheme: IconThemeData(
           color: Color(0xFF212121),
         ),
+        switchTheme: SwitchThemeData(
+          thumbColor: MaterialStateProperty.resolveWith<Color?>(
+            (Set<MaterialState> states) {
+              // Track color when the switch is selected.
+              if (states.contains(MaterialState.selected)) {
+                return Colors.white;
+              }
+              // Otherwise return null to set default track color
+              // for remaining states such as when the switch is
+              // hovered, focused, or disabled.
+              return Color(0xFF79747E);
+            },
+          ),
+          trackColor: MaterialStateProperty.resolveWith<Color?>(
+            (Set<MaterialState> states) {
+              // Track color when the switch is selected.
+              if (states.contains(MaterialState.selected)) {
+                return Theme.of(context).colorScheme.primary;
+              }
+              // Otherwise return null to set default track color
+              // for remaining states such as when the switch is
+              // hovered, focused, or disabled.
+              return Color(0xFFE6E0E9);
+            },
+          ),
+          trackOutlineColor: MaterialStateProperty.resolveWith(
+            (Set<MaterialState> states) {
+              // Track color when the switch is selected.
+              if (states.contains(MaterialState.selected)) {
+                return null;
+              }
+              // Otherwise return null to set default track color
+              // for remaining states such as when the switch is
+              // hovered, focused, or disabled.
+              return Color(0xFF79747E);
+            },
+          ),
+        ),
       ),
       darkTheme: ThemeData.dark().copyWith(
         useMaterial3: true,
@@ -38,6 +76,44 @@ class MyApp extends StatelessWidget {
             ),
         textTheme: TextTheme(
           bodyLarge: TextStyle(color: Colors.white),
+        ),
+        switchTheme: SwitchThemeData(
+          thumbColor: MaterialStateProperty.resolveWith<Color?>(
+            (Set<MaterialState> states) {
+              // Track color when the switch is selected.
+              if (states.contains(MaterialState.selected)) {
+                return Colors.white;
+              }
+              // Otherwise return null to set default track color
+              // for remaining states such as when the switch is
+              // hovered, focused, or disabled.
+              return Color(0xFF938F99);
+            },
+          ),
+          trackColor: MaterialStateProperty.resolveWith<Color?>(
+            (Set<MaterialState> states) {
+              // Track color when the switch is selected.
+              if (states.contains(MaterialState.selected)) {
+                return Theme.of(context).colorScheme.primary;
+              }
+              // Otherwise return null to set default track color
+              // for remaining states such as when the switch is
+              // hovered, focused, or disabled.
+              return null;
+            },
+          ),
+          trackOutlineColor: MaterialStateProperty.resolveWith(
+            (Set<MaterialState> states) {
+              // Track color when the switch is selected.
+              if (states.contains(MaterialState.selected)) {
+                return null;
+              }
+              // Otherwise return null to set default track color
+              // for remaining states such as when the switch is
+              // hovered, focused, or disabled.
+              return Color(0xFF938F99);
+            },
+          ),
         ),
       ),
       home: (LoadingScreen()),
